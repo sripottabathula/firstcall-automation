@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FirstCall Automation — Instant Lead Response</title>
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --surface: #131316;
+    --surface-border: #232327;
+    --text: #f5f5f7;
+    --text-dim: #9a9aa2;
+    --accent: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 32px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  nav .logo {
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+  nav .cta-small {
+    background: #fff;
+    color: #0a0a0c;
+    border: none;
+    border-radius: 999px;
+    padding: 9px 18px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .hero {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 72px 24px 40px;
+    text-align: center;
+  }
+  .hero .icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 32px;
+  }
+  .hero .icon svg { width: 22px; height: 22px; }
+  .hero h1 {
+    font-size: 2.75rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 22px;
+    font-weight: 700;
+  }
+  .hero p.subhead {
+    font-size: 1.15rem;
+    line-height: 1.55;
+    color: var(--text-dim);
+    max-width: 560px;
+    margin: 0 auto 36px;
+  }
+  .cta-row {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: #0a0a0c;
+    border: none;
+    border-radius: 999px;
+    padding: 14px 26px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .cta-primary:hover { background: #e8e8ea; }
+
+  .product-shot {
+    max-width: 1000px;
+    margin: 56px auto 0;
+    padding: 0 24px;
+  }
+  .product-shot .frame {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: 16px;
+    padding: 10px;
+    box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.6);
+  }
+  .product-shot img {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+  }
+  .product-shot .caption {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin-top: 16px;
+  }
+
+  section.how-it-works {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 110px 24px 40px;
+  }
+  .section-heading {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .section-heading h2 {
+    font-size: 2rem;
+    letter-spacing: -0.01em;
+    margin: 0 0 10px;
+  }
+  .section-heading p {
+    color: var(--text-dim);
+    font-size: 1rem;
+    margin: 0;
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: 14px;
+    padding: 28px 24px;
+  }
+  .step .num {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #fff;
+    color: #0a0a0c;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .step h3 {
+    font-size: 1.05rem;
+    margin: 0 0 10px;
+  }
+  .step p {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  section.stat {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 90px 24px 110px;
+    text-align: center;
+  }
+  section.stat .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: 18px;
+    padding: 48px 36px;
+  }
+  section.stat p {
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: var(--text);
+    margin: 0;
+  }
+  section.stat p strong {
+    color: #fff;
+  }
+
+  footer {
+    border-top: 1px solid var(--surface-border);
+    padding: 28px 24px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 720px) {
+    .hero h1 { font-size: 2.1rem; }
+    .steps { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">FirstCall Automation</div>
+  <a class="cta-small" href="#get-started">Get Started</a>
+</nav>
+
+<section class="hero">
+  <div class="icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#f5f5f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/>
+    </svg>
+  </div>
+  <h1>Your leads go cold in minutes. We fix that.</h1>
+  <p class="subhead">Automated instant response the moment someone fills out your form. No more losing jobs to slow callbacks.</p>
+  <div class="cta-row">
+    <a class="cta-primary" href="#get-started">See it in action →</a>
+  </div>
+
+  <div class="product-shot">
+    <div class="frame">
+      <img src="images/dashboard-screenshot.png" alt="Live lead response dashboard showing two leads, their response times, and status" />
+    </div>
+    <p class="caption">Live dashboard from a working deployment — real response times, tracked automatically.</p>
+  </div>
+</section>
+
+<section class="how-it-works">
+  <div class="section-heading">
+    <h2>How it works</h2>
+    <p>Three steps, no manual follow-up required.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="num">1</div>
+      <h3>Lead submits your form.</h3>
+      <p>Someone fills out a contact form describing their problem.</p>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <h3>Instant personalized reply.</h3>
+      <p>Within seconds, they get a text and email referencing their specific issue, letting them know help is on the way.</p>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <h3>You call, they're still warm.</h3>
+      <p>No cold leads, no lost jobs to slower competitors.</p>
+    </div>
+  </div>
+</section>
+
+<section class="stat">
+  <div class="stat-card">
+    <p>Leads contacted within <strong>5 minutes</strong> convert dramatically better than leads contacted after 30. Every second between form submission and first response is a second a competitor can steal that customer. This system closes that gap to <strong>seconds, not minutes</strong>.</p>
+  </div>
+</section>
+
+<footer id="get-started">
+  FirstCall Automation — instant lead response for local service businesses.
+</footer>
+
+</body>
+</html>
