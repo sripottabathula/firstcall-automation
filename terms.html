@@ -81,6 +81,35 @@
     font-size: 0.82rem;
   }
   footer a { color: inherit; }
+
+  .email-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    opacity: 0.6;
+    cursor: pointer;
+    border-radius: 5px;
+    vertical-align: middle;
+  }
+  .copy-btn:hover { opacity: 1; background: rgba(15,31,56,0.08); }
+  .copy-btn svg { width: 14px; height: 14px; }
+  .copy-btn .copied-label {
+    font-size: 0.72rem;
+    margin-left: 4px;
+    white-space: nowrap;
+  }
+  .copy-btn.copied { opacity: 1; width: auto; padding: 0 6px; }
 </style>
 </head>
 <body>
@@ -109,14 +138,36 @@
     <p>Submitting this form does not constitute a service agreement.</p>
 
     <h2>Contact</h2>
-    <p>Questions can be sent to <a class="inline" href="mailto:contact.firstcallautomation@gmail.com">contact.firstcallautomation@gmail.com</a>.</p>
+    <p>Questions can be sent to <span class="email-copy"><a class="inline" href="mailto:contact.firstcallautomation@gmail.com">contact.firstcallautomation@gmail.com</a><button type="button" class="copy-btn" data-copy-email="contact.firstcallautomation@gmail.com" title="Copy email address" aria-label="Copy email address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></span>.</p>
   </div>
 </main>
 
 <footer>
   FirstCall Automation — instant lead response for local service businesses.<br>
-  <a href="mailto:contact.firstcallautomation@gmail.com">contact.firstcallautomation@gmail.com</a>
+  <span class="email-copy">
+    <a href="mailto:contact.firstcallautomation@gmail.com">contact.firstcallautomation@gmail.com</a>
+    <button type="button" class="copy-btn" data-copy-email="contact.firstcallautomation@gmail.com" title="Copy email address" aria-label="Copy email address">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+    </button>
+  </span>
 </footer>
+
+<script>
+  document.querySelectorAll('.copy-btn[data-copy-email]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var email = btn.getAttribute('data-copy-email');
+      navigator.clipboard.writeText(email).then(function () {
+        var original = btn.innerHTML;
+        btn.classList.add('copied');
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="copied-label">Copied!</span>';
+        setTimeout(function () {
+          btn.classList.remove('copied');
+          btn.innerHTML = original;
+        }, 1500);
+      });
+    });
+  });
+</script>
 
 </body>
 </html>
